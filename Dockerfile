@@ -7,9 +7,9 @@ WORKDIR /app
 # Enable corepack (pnpm already included in node:18+ images)
 RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 # Copy package files
-COPY package.json pnpm-lock.yaml* ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 # Install deps (skip frozen lockfile for safety inside container)
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install --frozen-lockfile
 # =========================
 #  Build stage
 # =========================
